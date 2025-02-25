@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::view('/', 'back-end/index');
+// admin url
+Route::view('admin/dashboard', 'back-end/dashboard')->name('dashboard');

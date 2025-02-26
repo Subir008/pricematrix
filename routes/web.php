@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -7,4 +8,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // admin url
-Route::view('admin/dashboard', 'back-end/dashboard')->name('dashboard');
+
+Route::prefix('admin')->group(function(){
+    
+    Route::view('dashboard', 'back-end/dashboard')->name('dashboard');
+    Route::view('login', 'back-end.login')->name('login');
+    
+    Route::post('login', [AdminController::class , "login"])->name('login');
+
+});

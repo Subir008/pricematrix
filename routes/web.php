@@ -16,4 +16,6 @@ Route::prefix('admin')->group(function(){
     
     Route::post('login', [AdminController::class , "login"])->name('login');
 
+    Route::get('logged_out' , [AdminController::class , 'logged_out'] )->name('logout');
+
 });

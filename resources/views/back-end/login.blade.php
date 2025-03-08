@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -55,53 +55,79 @@
 </head>
 
 <body>
-<!-- log in section start -->
-<section class="log-in-section background-image-2 section-b-space">
-    <div class="container-fluid-lg w-100">
-        <div class="row m-0">
-            <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
-                <div class="image-contain">
-                    <img src="../assets/images/log-in.png" class="img-fluid" alt="">
-                </div>
+    <!-- log in section start -->
+    <section class="log-in-section background-image-2 section-b-space">
+        <div class="container-fluid-lg w-100">
+            
+            @if (session('name') || session('password'))
+            
+            <div class="alert alert-danger alert-dismissible fade show m-4" role="alert">
+                <strong>Holy guacamole!</strong> {{ session('name') }}<br>{{ session('password') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            @endif
 
-            <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
-                <div class="log-in-box">
-                    <div class="log-in-title">
-                        <h3>Welcome To PriceMatrix</h3>
-                        <h4>Log In Your Account</h4>
+            @if (session('failed'))
+                <div class="alert alert-danger alert-dismissible fade show m-4" role="alert">
+                    <strong class="fw-bold fs-5 "> {{ session('failed') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>            
+            @endif
+
+            <!-- @if (session('logout')) -->
+
+            <!-- @endif -->
+
+            <div class="row m-0">
+
+                <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
+                    <div class="image-contain">
+                        <img src="../assets/images/log-in.png" class="img-fluid" alt="">
                     </div>
+                </div>
 
-                    <div class="input-box">
-                        <form class="row g-4" method="post" action="login">
-                            @csrf
-                            <div class="col-12">
-                                <div class="form-floating theme-form-floating log-in-form">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
-                                    <label for="email">Email Address / Contact Number</label>
+                <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+                    <div class="log-in-box">
+                        <div class="log-in-title">
+                            <h3>Welcome To PriceMatrix</h3>
+                            <h4>Log In Your Account</h4>
+                        </div>
+
+                        <div class="input-box">
+                            <form class="row g-4" method="post" action="login">
+                                @csrf
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            placeholder="Email Address" 
+                                             value="{{ old('email') ?? '' }}"
+                                            >
+                                        <label for="email">Email Address / Contact Number</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="form-floating theme-form-floating log-in-form">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                                    <label for="password">Password</label>
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            placeholder="Password" value="{{ old('password')  }}">
+                                        <label for="password">Password</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center">Log
-                                    In</button>
-                            </div>
-                        </form>
+                                <div class="col-12">
+                                    <button class="btn btn-animation w-100 justify-content-center">Log
+                                        In</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- log in section end -->
+    </section>
+
+    <!-- log in section end -->
 
 
     <!-- latest js -->

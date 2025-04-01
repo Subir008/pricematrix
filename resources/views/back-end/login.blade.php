@@ -58,25 +58,57 @@
     <!-- log in section start -->
     <section class="log-in-section background-image-2 section-b-space">
         <div class="container-fluid-lg w-100">
-            
+
+            <!-- Alert for empty name & password start -->
             @if (session('name') || session('password'))
-            
-            <div class="alert alert-danger alert-dismissible fade show m-4" role="alert">
-                <strong>Holy guacamole!</strong> {{ session('name') }}<br>{{ session('password') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
-
-            @if (session('failed'))
                 <div class="alert alert-danger alert-dismissible fade show m-4" role="alert">
-                    <strong class="fw-bold fs-5 "> {{ session('failed') }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>            
+                    <strong>
+                        @if (session('name'))
+                            {{ session('name') }}
+                            <br>
+                        @endif
+                        @if (session('password'))
+                            {{ session('password') }}
+                        @endif
+                    </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
+            <!-- Alert for empty name & password end -->
 
-            <!-- @if (session('logout')) -->
+            <!-- Toaster for wrong credentials start-->
+            @if (session('failed'))
+                <div class="position-fixed bottom-0  p-3" style="z-index: 11">
+                    <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                        style="background-color: #da3837; color: white;">
+                        <div class="toast-header">
+                            <small class="text-muted me-auto">Just Now</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            <strong>{{ session('failed') }}</strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <!-- Toaster for wrong credentials end-->
 
-            <!-- @endif -->
+            <!-- Toaster for logout start-->
+            @if (session('logout'))
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                        style="background-color: #0da487; color: white;">
+                        <div class="toast-header">
+                            <small class="text-muted me-auto">Just Now</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            <strong>{{ session('logout') }}</strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <!-- Toaster for logout end-->
 
             <div class="row m-0">
 
@@ -99,9 +131,7 @@
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
                                         <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Email Address" 
-                                             value="{{ old('email') ?? '' }}"
-                                            >
+                                            placeholder="Email Address" value="{{ old('email') ?? '' }}">
                                         <label for="email">Email Address / Contact Number</label>
                                     </div>
                                 </div>
@@ -129,9 +159,20 @@
 
     <!-- log in section end -->
 
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script>
+        // Wait for the page to finish loading
+        $(document).ready(function () {
+
+            var myToastEl = document.getElementById('liveToast')
+            var myToast = bootstrap.Toast.getInstance(myToastEl) || new bootstrap.Toast(myToastEl)
+
+            // Show the toaster
+            myToast.show();
+        });
+    </script>
 
     <!-- latest js -->
-    <script src="../assets/js/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap js -->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>

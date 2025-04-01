@@ -1,3 +1,11 @@
+ <!-- Need to solve these
+ @if (! session('loggedin'))
+ @php
+ // return redirect('login') 
+ @endphp
+ @endif
+ -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -56,9 +64,6 @@
 
 <body>
 
-@if (! session('loggedin'))
-    {{ route('login') }}
-@endif
 
     <!-- tap on top start -->
     <div class="tap-top">
@@ -188,7 +193,7 @@
                                 </li>
                                 <li>
                                     <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="{{ route('logout') }}">
+                                        href="#">
                                         <i data-feather="log-out"></i>
                                         <span>Log out</span>
                                     </a>
@@ -373,7 +378,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="button-box">
                         <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                        <a href="{{ route('logout') }}" class="btn  btn--yes btn-primary">Yes</a>
+                        <!-- <button type="button" ></button> -->
                     </div>
                 </div>
             </div>

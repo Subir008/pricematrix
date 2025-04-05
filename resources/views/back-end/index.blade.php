@@ -433,6 +433,10 @@
     <!-- sidebar effect -->
     <script src="../assets/js/sidebareffect.js"></script>
 
+    <!-- Data table js -->
+    <script src="assets/js/jquery.dataTables.js"></script>
+    <script src="assets/js/custom-data-table.js"></script>
+
     <!-- Theme js -->
     <script src="../assets/js/script.js"></script>
 </body>

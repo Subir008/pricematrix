@@ -48,6 +48,11 @@
     <!-- Plugins css -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/date-picker.css">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/select2.min.css">
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="../../assets/css/vendors/bootstrap.css">
@@ -429,14 +434,22 @@
 
     <!-- ratio js -->
     <script src="../assets/js/ratio.js"></script>
+    
+    <!-- Data table js -->
+    <script src="../assets/js/jquery.dataTables.js"></script>
+    <script src="../assets/js/custom-data-table.js"></script>
 
+    <!-- ck editor js -->
+    <script src="../assets/js/ckeditor-custom.js"></script>
+    <script src="../assets/js/ckeditor.js"></script>
+    
+    <!-- select2 js -->
+    <script src="../assets/js/select2.min.js"></script>
+    <script src="../assets/js/select2-custom.js"></script>
+  
     <!-- sidebar effect -->
     <script src="../assets/js/sidebareffect.js"></script>
-
-    <!-- Data table js -->
-    <script src="assets/js/jquery.dataTables.js"></script>
-    <script src="assets/js/custom-data-table.js"></script>
-
+    
     <!-- Theme js -->
     <script src="../assets/js/script.js"></script>
 </body>

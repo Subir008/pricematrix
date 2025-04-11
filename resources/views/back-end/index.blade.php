@@ -20,12 +20,19 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
-    <title>PriceMatrix - Dashboard</title>
+   
+    <title>
+    @section('title')
+    @show
+    </title>
 
     <!-- Google font-->
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
         rel="stylesheet">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/datatables.css">
 
     <!-- Linear Icon css -->
     <link rel="stylesheet" href="../../assets/css/linearicon.css">
@@ -213,8 +220,8 @@
 
         <!-- Page Body Start-->
         <div class="page-body-wrapper">
+
             <!-- Page Sidebar Start-->
-          
             <div class="sidebar-wrapper">
                 <div id="sidebarEffect"></div>
                 <div>
@@ -259,11 +266,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="products.html">Prodcts</a>
+                                            <a href="{{ route('products') }}">Products</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-product.html">Add New Products</a>
+                                            <a href="{{ route('add-products') }}">Add New Products</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -275,11 +282,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="category.html">Category List</a>
+                                            <a href="{{ route('category-list') }}">Category List</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-category.html">Add New Category</a>
+                                            <a href="{{ route('add-new-categories') }}">Add New Category</a>
                                         </li>
                                     </ul>
                                 </li>

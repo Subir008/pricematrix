@@ -1,5 +1,9 @@
 @extends('back-end.index')
 
+<!-- Page title -->
+@section('title' , 'Add New Product')
+
+<!-- Page Content Start -->
 @section('main')
 
     <!-- New Product Add Start -->
@@ -248,3 +252,4 @@
     <!-- New Product Add End -->
 
 @endsection
+<!-- Page Content End -->

@@ -1,5 +1,9 @@
 @extends('back-end.index')
 
+<!-- Page title -->
+@section('title' , 'Products')
+
+<!-- Page Content Start -->
 @section('main')
 
     <div class="container-fluid">
@@ -95,3 +99,4 @@
 
 
 @endsection
+<!-- Page Content End -->

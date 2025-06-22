@@ -5,7 +5,6 @@
 
 <!-- Page Content Start -->
 @section('main')
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -95,8 +94,5 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
 <!-- Page Content End -->

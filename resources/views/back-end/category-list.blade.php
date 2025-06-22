@@ -2,6 +2,7 @@
 
 @section('title' , 'Category List')
 
+<!-- Page Content Start -->
 @section('main')
     <!-- All User Table Start -->
     <div class="container-fluid">
@@ -131,3 +132,4 @@
     </div>
     <!-- All User Table Ends-->
 @endsection
+<!-- Page Content End -->

@@ -9,16 +9,21 @@ use Illuminate\Support\Facades\Route;
 
 // admin url
 
-Route::prefix('admin')->group(function(){
+Route::middleware('guestcheck')->group(function(){
+    Route::prefix('admin')->group(function(){
     
-    Route::view('login', 'back-end.login')->name('login');
-    Route::view('dashboard', 'back-end/dashboard')->name('dashboard');
-    Route::view('products', 'back-end.products')->name('products');
-    Route::view('add-new-products', 'back-end.add-new-products')->name('add-products');
-    Route::view('category-list' , 'back-end.category-list')->name('category-list');
-    Route::view('add-new-category', 'back-end.add-new-categories')->name('add-new-categories');
-    
-    Route::post('login', [AdminController::class , "login"])->name('login');
-    Route::get('logged_out' , [AdminController::class , 'logged_out'] )->name('logout');
+        Route::get('login' , 'login')->name('login');
+        Route::view('login', 'back-end.login')->name('login');
+        Route::view('dashboard', 'back-end/dashboard')->name('dashboard');
+        Route::view('products', 'back-end.products')->name('products');
+        Route::view('add-new-products', 'back-end.add-new-products')->name('add-products');
+        Route::view('category-list' , 'back-end.category-list')->name('category-list');
+        Route::view('add-new-category', 'back-end.add-new-categories')->name('add-new-categories');
+        
+        Route::post('login', [AdminController::class , "login"])->name('login');
+        Route::get('logged_out' , [AdminController::class , 'logged_out'] )->name('logout');
+    });
+
+
 
 });

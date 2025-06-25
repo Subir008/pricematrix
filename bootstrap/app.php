@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\GuestUser;
+use App\Http\Middleware\LoginCheck;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+       
+        $middleware->appendToGroup('guestcheck', GuestUser::class);
+        $middleware->appendToGroup('logincheck' , LoginCheck::class );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

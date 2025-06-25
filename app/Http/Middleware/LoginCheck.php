@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class GuestUser
+class LoginCheck
 {
     /**
      * Handle an incoming request.
@@ -17,8 +15,8 @@ class GuestUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(! Session()->has('loggedin')){
-            return redirect()->route('login')->with('failed' , 'You Have To Login First  !!!!');
+        if(Session()->has('loggedin')){
+            return redirect()->route('dashboard');
         }
         return $next($request);
     }

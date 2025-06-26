@@ -1,11 +1,3 @@
- <!-- Need to solve these
- @if (! session('loggedin'))
- @php
- // return redirect('login') 
- @endphp
- @endif
- -->
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -398,6 +390,9 @@
         </div>
     </div>
     <!-- Modal End -->
+
+    @section('script')
+    @show
 
     <!-- latest js -->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>

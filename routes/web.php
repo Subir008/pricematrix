@@ -1,35 +1,37 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // admin url
 
 Route::middleware('logincheck')->group(function(){
-Route::prefix('admin')->group(function(){
- 
-
-    Route::view('login', 'back-end.login')->name('login');
-    Route::post('login' , [AdminController::class , 'login'])->name('login');
+    Route::prefix('admin')->group(function(){
+        Route::get('/login' , [ViewController::class, 'login'])->name('login');
+        Route::view('/login', 'back-end.login')->name('login');
+        Route::post('/login' , [AdminLoginController::class , 'login'])->name('login');
     });
 });
 
 Route::middleware('guestcheck')->group(function() {
-
     Route::prefix('admin')->group(function(){
         
-        Route::view('dashboard', 'back-end/dashboard')->name('dashboard');
-        Route::view('products', 'back-end.products')->name('products');
-        Route::view('add-new-products', 'back-end.add-new-products')->name('add-products');
-        Route::view('category-list' , 'back-end.category-list')->name('category-list');
-        Route::view('add-new-category', 'back-end.add-new-categories')->name('add-new-categories');
+        // Loading the pages
+        Route::controller(ViewController::class)->group(function(){
+            Route::get('dashboard', 'dashboard')->name('dashboard');
+            Route::get('products', 'products')->name('products');
+            Route::get('add-new-products', 'addNewProducts')->name('add-products');
+            Route::get('category-list' , 'categoryList')->name('category-list');
+            Route::get('add-new-category', 'addNewCategory')->name('add-new-categories');
+        });
+
+        Route::controller(AdminController::class)->group(function(){
+            Route::post('/add-category' , 'addNewCategory')->name('addNewCategory');
+        });
         
-        Route::get('logged_out' , [AdminController::class , 'logged_out'] )->name('logout');
+        Route::get('logged_out' , [AdminLoginController::class , 'logged_out'] )->name('logout');
         
     });
 });

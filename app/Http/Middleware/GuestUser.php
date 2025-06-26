@@ -17,6 +17,7 @@ class GuestUser
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Check if the user is logged in or not.
         if(! Session()->has('loggedin')){
             return redirect()->route('login')->with('failed' , 'You Have To Login First  !!!!');
         }

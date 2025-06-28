@@ -15,17 +15,18 @@
                                 <div class="card-header-2">
                                     <h5>Category Information</h5>
                                 </div>
-                                <form action="{{ route('addNewCategory') }}" method="post">
+                                <form action="{{ route('addNewCategory') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="theme-form theme-form-2 mega-form">
                                         <div class="mb-4 row align-items-center">
                                             <label class="form-label-title col-sm-3 mb-0">Category Name</label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" type="text" name="category_name" placeholder="Category Name">
+                                                <input class="form-control" type="text" name="category_name"
+                                                    placeholder="Category Name" value="{{ old('category_name') ?? '' }}" >
                                                 @error('category_name')
-                                                  <label class="text-danger ">
-                                                     {{ $message }}
-                                                  </label> 
+                                                    <label class="text-danger ">
+                                                        {{ $message }}
+                                                    </label>
                                                 @enderror
                                             </div>
                                         </div>
@@ -34,22 +35,31 @@
                                             <label class="col-sm-3 col-form-label form-label-title">Category
                                                 Image</label>
                                             <div class="form-group col-sm-9">
-                                                <input type="file" class="form-control form-choose" name="category_img"
-                                                    id="">
-                                                
+                                                @php
+                                                $file_allowed =  '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
+                                                @endphp
+                                                <input type="file" class="form-control form-choose" name="category_image"
+                                                    value="{{ old('category_image') ?? '' }}" accept="{{ $file_allowed }}">
+                                                @error('category_image')
+                                                    <label class="text-danger ">
+                                                        {{ $message }}
+                                                    </label>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="mb-4 row align-items-center">
                                         <div class="col-sm-3 form-label-title">Select Category Icon</div>
-                                        <input type="hidden" name="category_icon" id="categoryIconInput">
+                                        <input type="hidden" name="category_icon" id="categoryIconInput"
+                                            value="{{ old('category_icon') }}">
                                         <div class="col-sm-9">
                                             <div class="dropdown icon-dropdown">
                                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                                    data-bs-toggle="dropdown">
+                                                    data-bs-toggle="dropdown" name="icon">
                                                     Select Icon
                                                 </button>
+
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                     <li>
                                                         <a class="dropdown-item" href="#" data-icon="vegetable.svg"
@@ -120,6 +130,11 @@
                                                     </li>
                                                 </ul>
                                             </div>
+                                            @error('category_icon')
+                                                <label for="" class="text-danger">
+                                                    {{ $message }}
+                                                </label>
+                                            @enderror
                                         </div>
                                     </div>
 

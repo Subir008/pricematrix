@@ -139,7 +139,7 @@
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
                                         <input type="password" class="form-control" name="password" id="password"
-                                            placeholder="Password" value="{{ old('password')  }}">
+                                            placeholder="Password" >
                                         <label for="password">Password</label>
                                     </div>
                                 </div>

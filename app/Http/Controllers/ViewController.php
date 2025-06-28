@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product_category_master;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -27,7 +28,8 @@ class ViewController extends Controller
 
     // Category list page redirect
     public function categoryList(){
-        return view('back-end.category-list');
+       $data = Product_category_master::all();
+        return view('back-end.category-list' ,['data' => $data]);
     }
 
     // Add new category page redirect

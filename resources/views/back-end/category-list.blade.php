@@ -1,9 +1,26 @@
 @extends('back-end.index')
 
-@section('title' , 'Category List')
+@section('title', 'Category List')
 
 <!-- Page Content Start -->
 @section('main')
+    <!-- Toaster for wrong credentials start-->
+
+    @if (session('success'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color: #0da487; color: white;">
+                <div class="toast-header">
+                    <small class="text-muted me-auto">Just Now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- Toaster for wrong credentials end-->
     <!-- All User Table Start -->
     <div class="container-fluid">
         <div class="row">
@@ -13,7 +30,7 @@
                         <div class="title-header option-title">
                             <h5>All Category</h5>
                             <form class="d-inline-flex">
-                                <a href="add-new-category.html" class="align-items-center btn btn-theme d-flex">
+                                <a href="{{ route('add-new-categories') }}" class="align-items-center btn btn-theme d-flex">
                                     <i data-feather="plus-square"></i>Add New
                                 </a>
                             </form>
@@ -34,102 +51,129 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td>Aata Buscuit</td>
+                                        @foreach ($data as $category_data)
+                                            @php
+                                                $date = $category_data->category_date;
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $category_data->category_name }}</td>
 
-                                            <td>26-12-2021</td>
 
-                                            <td>
-                                                <div class="table-image">
-                                                    <img src="assets/images/product/1.png" class="img-fluid" alt="">
+                                                <td>{{$date}}</td>
+
+                                                <td>
+                                                    <div class="table-image">
+                                                        <img src="/assets/category_img/{{ $category_data->category_img }}"
+                                                            class="img-fluid" alt="">
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="category-icon">
+                                                        <img src="/assets/svg/{{ $category_data->category_icon }}"
+                                                            class="img-fluid" alt="">
+                                                    </div>
+                                                </td>
+
+                                                <td>buscuit</td>
+
+                                                <td>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="order-detail.html">
+                                                                <i class="ri-eye-line"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="javascript:void(0)">
+                                                                <i class="ri-pencil-line"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModalToggle">
+                                                                <i class="ri-delete-bin-line"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle"
+                                                aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header d-block text-center">
+                                                            <h5 class="modal-title w-100" id="exampleModalLabel22">Are You Sure
+                                                                ?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="remove-box">
+                                                                <p>The permission for the use/group, preview is inherited from
+                                                                    the object, object will create a
+                                                                    new permission for this object</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-animation btn-md fw-bold"
+                                                                data-bs-dismiss="modal">No</button>
+                                                            <a href="{{ route('deleteCategory') }}/{{ $category_data->category_id}}"
+                                                                type="button" class="btn btn-animation btn-md fw-bold"
+                                                                data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                                                                data-bs-dismiss="modal">Yes</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </td>
 
-                                            <td>
-                                                <div class="category-icon">
-                                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/1/vegetable.svg"
-                                                        class="img-fluid" alt="">
-                                                </div>
-                                            </td>
+                                            </div>
 
-                                            <td>buscuit</td>
-
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="order-detail.html">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="javascript:void(0)">
-                                                            <i class="ri-pencil-line"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModalToggle">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Cold Brew Coffee</td>
-
-                                            <td>21-05-2022</td>
-
-                                            <td>
-                                                <div class="table-image">
-                                                    <img src="assets/images/product/2.png" class="img-fluid" alt="">
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="category-icon">
-                                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/1/cup.svg"
-                                                        class="img-fluid" alt="">
-                                                </div>
-                                            </td>
-
-                                            <td>coffee</td>
-
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="order-detail.html">
-                                                            <i class="ri-eye-line"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="javascript:void(0)">
-                                                            <i class="ri-pencil-line"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModalToggle">
-                                                            <i class="ri-delete-bin-line"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- All User Table Ends-->
+
+    <!-- Delete Modal Box Start -->
+
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle2" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel12">Done!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box text-center">
+                        <div class="wrapper">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                        </div>
+                        <h4 class="text-content">It's Removed.</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal Box End -->
 @endsection
 <!-- Page Content End -->

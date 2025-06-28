@@ -397,6 +397,18 @@
     <!-- latest js -->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
 
+     <script>
+        // Toaster 
+        // Wait for the page to finish loading
+        $(document).ready(function () {
+            var myToastEl = document.getElementById('liveToast')
+            var myToast = bootstrap.Toast.getInstance(myToastEl) || new bootstrap.Toast(myToastEl)
+            // Show the toaster
+            myToast.show();
+        });
+    </script>
+    
+
     <!-- Bootstrap js -->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 

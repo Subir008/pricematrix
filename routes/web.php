@@ -29,6 +29,7 @@ Route::middleware('guestcheck')->group(function() {
 
         Route::controller(AdminController::class)->group(function(){
             Route::post('/add-category' , 'addNewCategory')->name('addNewCategory');
+            Route::delete('/delete-category/{id}','deleteCategory')->name('deleteCategory');
         });
         
         Route::get('logged_out' , [AdminLoginController::class , 'logged_out'] )->name('logout');

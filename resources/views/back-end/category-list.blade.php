@@ -5,7 +5,6 @@
 <!-- Page Content Start -->
 @section('main')
     <!-- Toaster for wrong credentials start-->
-
     @if (session('success'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
             <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
@@ -45,7 +44,7 @@
                                             <th>Date</th>
                                             <th>Product Image</th>
                                             <th>Icon</th>
-                                            <th>Slug</th>
+                                            <!-- <th>Slug</th> -->
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -75,7 +74,7 @@
                                                     </div>
                                                 </td>
 
-                                                <td>buscuit</td>
+                                                <!-- <td>buscuit</td> -->
 
                                                 <td>
                                                     <ul>
@@ -93,15 +92,18 @@
 
                                                         <li>
                                                             <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModalToggle">
+                                                                data-bs-target="#deleteModal{{ $category_data->category_id }}">
                                                                 <i class="ri-delete-bin-line"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle"
-                                                aria-hidden="true" tabindex="-1">
+                                            
+                                            <!-- Category Delete confirmation Modal Box Start -->
+                                            <div class="modal fade theme-modal remove-coupon"
+                                                id="deleteModal{{ $category_data->category_id }}" aria-hidden="true"
+                                                tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header d-block text-center">
@@ -122,15 +124,14 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-animation btn-md fw-bold"
                                                                 data-bs-dismiss="modal">No</button>
-                                                            <a href="{{ route('deleteCategory') }}/{{ $category_data->category_id}}"
-                                                                type="button" class="btn btn-animation btn-md fw-bold"
-                                                                data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                                                                data-bs-dismiss="modal">Yes</a>
+                                                            <a href="{{ route('deleteCategory', ['id' => $category_data->category_id]) }}"
+                                                                type="button" class="btn btn-animation btn-md fw-bold">Yes</a>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             </div>
+                                            <!-- Delete Modal Box End -->
 
                                         @endforeach
                                     </tbody>
@@ -145,14 +146,14 @@
         </div>
     </div>
     <!-- All User Table Ends-->
-
-    <!-- Delete Modal Box Start -->
-
-    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle2" aria-hidden="true" tabindex="-1">
+    
+    <!-- Data deletion success modal start -->
+    <div class="modal fade theme-modal remove-coupon" id="deleteModalSuccess" aria-hidden="true" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLabel12">Done!</h5>
+                    <h5 class="modal-title text-center" id="exampleModalLabel12">Done!
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fas fa-times"></i>
                     </button>
@@ -165,7 +166,7 @@
                                 <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                             </svg>
                         </div>
-                        <h4 class="text-content">It's Removed.</h4>
+                        <h4 class="text-content">{{session('delete_success')}}</h4>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -174,6 +175,20 @@
             </div>
         </div>
     </div>
-    <!-- Delete Modal Box End -->
+    <!-- Data deletion success modal end -->
+
 @endsection
 <!-- Page Content End -->
+
+<!-- Script Section Start -->
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if (session()->has('delete_success'))
+        let deleteModalSuccess = new bootstrap.Modal(document.getElementById('deleteModalSuccess'));
+        deleteModalSuccess.show();
+        @endif
+    });
+    </script>
+@endsection
+<!-- Script Section End -->

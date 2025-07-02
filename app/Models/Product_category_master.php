@@ -13,4 +13,6 @@ class Product_category_master extends Model
         'category_icon',
         'category_date'
     ];
+    
+    protected $primaryKey = 'category_id';
 }

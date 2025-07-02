@@ -391,12 +391,12 @@
     </div>
     <!-- Modal End -->
 
-    @section('script')
-    @show
-
     <!-- latest js -->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
-
+    
+    @section('script')
+    @show
+    
      <script>
         // Toaster 
         // Wait for the page to finish loading

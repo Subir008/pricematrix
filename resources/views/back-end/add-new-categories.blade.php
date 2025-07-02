@@ -153,6 +153,41 @@
     </div>
     </div>
     <!-- New Product Category Add End -->
+
+     <!-- Toaster for Category Added Success start-->
+    @if (session('category_add_success'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color: #0da487; color: white;">
+                <div class="toast-header">
+                    <small class="text-muted me-auto">Success</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>ss{{ session('category_add_success') }}</strong>
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- Toaster for Category Added Success end-->
+     
+     <!-- Toaster for Category Added Failure start-->
+    @if (session('category_add_failed'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color: #da3837; color: white;">
+                <div class="toast-header">
+                    <small class="text-muted me-auto">Failed</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>{{ session('category_add_failed') }}</strong>
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- Toaster for Category Added Failure end -->
+
 @endsection
 
 

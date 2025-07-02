@@ -55,13 +55,26 @@ class AdminController extends Controller
 
         if(! $data)
         {
-            return back()->with('failed' , 'Failed to Add Category');
+            return back()->with('category_add_failed' , 'Failed to Add Category');
         }
         
-        return back()->with('success','Category Added Successfully');
+        return back()->with('category_add_success','Category Added Successfully');
     }
 
-    public function deleteCategory($id){
-        return $id;
+    public function deleteCategory(int $id){
+
+        // Check if the id is existed or not
+        $category_id_exist = Product_category_master::where('category_id' , $id)->exists();
+        if( $category_id_exist){
+            // Delete the category list data if it exists 
+            Product_category_master::destroy($id);
+
+            return back()->with('delete_success','Category Deleted Successfully ....');
+
+        }else{
+            return back()->with('delete_failure', 'Couldnot Delete the Category ... ');
+        }
+        
+
     }
 }

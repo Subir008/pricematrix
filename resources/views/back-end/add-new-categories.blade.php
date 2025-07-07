@@ -53,6 +53,8 @@
                                         <div class="col-sm-3 form-label-title">Select Category Icon</div>
                                         <input type="hidden" name="category_icon" id="categoryIconInput"
                                             value="{{ old('category_icon') }}">
+                                        <input type="hidden" name="category_icon_name" id="categoryIconName"
+                                            value="">
                                         <div class="col-sm-9">
                                             <div class="dropdown icon-dropdown">
                                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -143,8 +145,8 @@
                                         <button class="btn btn-primary btn-m" type="submit">Submit</button>
                                         <!-- </div> -->
                                     </div>
+                                </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -164,7 +166,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
-                    <strong>ss{{ session('category_add_success') }}</strong>
+                    <strong>{{ session('category_add_success') }}</strong>
                 </div>
             </div>
         </div>
@@ -199,14 +201,17 @@
             const dropdownButton = document.getElementById('dropdownMenuButton1');
             const dropdownMenu = document.querySelector('.dropdown-menu');
             const iconInput = document.getElementById('categoryIconInput');
+            const iconName = document.getElementById('categoryIconName');
 
             dropdownItems.forEach(item => {
                 item.addEventListener('click', function (e) {
                     e.preventDefault();
 
-                    const iconName = this.getAttribute('data-icon');
+                    const icon = this.getAttribute('data-icon');
                     const Name = this.getAttribute('data-name');
-                    iconInput.value = iconName;
+                    iconInput.value = icon;
+                    iconName.value = Name ;
+
 
                     // Update button text to show selection
                     dropdownButton.textContent = Name;

@@ -85,8 +85,8 @@
                                                         </li>
 
                                                         <li>
-                                                            <a href="javascript:void(0)">
-                                                                <i class="ri-pencil-line"></i>
+                                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#updateModal{{ $category_data->category_id }}">
+                                                                <i class="ri-pencil-line" ></i>
                                                             </a>
                                                         </li>
 
@@ -129,9 +129,156 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- Delete Modal Box End -->
+                                            <!-- Category Delete confirmation Modal Box End -->
+
+                                            <!-- Category Update Modal Box Start -->
+                                            <div class="modal fade theme-modal remove-coupon"
+                                                id="updateModal{{ $category_data->category_id }}" aria-hidden="true"
+                                                tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header d-block text-center">
+                                                            <h5 class="modal-title w-100" id="exampleModalLabel22">Are You Sure
+                                                                ?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{{ route('updateCategory') }}" method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                             <div class="modal-body">
+                                                                <div class="remove-box">
+                                                                    <input type="hidden" name="category_id" value="{{ $category_data->category_id }}">
+                                                                    <div class="theme-form theme-form-2 mega-form">
+                                                                        <div class="mb-3 row align-items-center">
+                                                                            <label class="form-label-title col-sm-12 mb-2">Category Name</label>
+                                                                            <div class="col-sm-12">
+                                                                                <input class="form-control" type="text" name="category_name"
+                                                                                    placeholder="Category Name" value="{{ $category_data->category_name }}" >
+                                                                                @error('category_name')
+                                                                                    <label class="text-danger ">
+                                                                                        {{ $message }}
+                                                                                    </label>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="mb-4 row align-items-center">
+                                                                            <label class="col-sm-12 col-form-label form-label-title mb-0">Category
+                                                                                Image</label>
+                                                                                <img src="/assets/category_img/{{ $category_data->category_img }}" class="img-fluid mb-3" alt="">
+                                                                            <div class="form-group col-sm-12">
+                                                                                @php
+                                                                                $file_allowed =  '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
+                                                                                @endphp
+                                                                                <input type="file" class="form-control form-choose" name="category_image"
+                                                                                    value="{{ old('category_image') ?? '' }}" accept="{{ $file_allowed }}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="mb-4 row align-items-center">
+                                                                        <div class="col-sm-12 form-label-title">Select Category Icon</div>
+                                                                        <input type="hidden" name="category_icon" id="categoryIconInput"
+                                                                            value="{{ $category_data->category_icon }}">
+                                                                        <input type="hidden" name="category_icon_name" id="categoryIconName"
+                                                                            value="{{ $category_data->category_icon_name }}">
+                                                                        
+                                                                        <div class="col-sm-12">
+                                                                            <div class="dropdown icon-dropdown">
+                                                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                                                    data-bs-toggle="dropdown" name="icon">
+                                                                                    {{ $category_data->category_icon_name }}
+                                                                                </button>
+                                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="vegetable.svg"
+                                                                                            data-name="Vegetables">
+                                                                                            <img src="../assets/svg/vegetable.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="cup.svg"
+                                                                                            data-name="Refreshment">
+                                                                                            <img src="../assets/svg/cup.svg" class="blur-up lazyload"
+                                                                                                alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="meats.svg"
+                                                                                            data-name="Meats">
+                                                                                            <img src="../assets/svg/meats.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="breakfast.svg"
+                                                                                            data-name="Breakfast">
+                                                                                            <img src="../assets/svg/breakfast.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="frozen.svg"
+                                                                                            data-name="Frozen">
+                                                                                            <img src="../assets/svg/frozen.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="biscuit.svg"
+                                                                                            data-name="Biscuit">
+                                                                                            <img src="../assets/svg/biscuit.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="grocery.svg"
+                                                                                            data-name="Grocery">
+                                                                                            <img src="../assets/svg/grocery.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="drink.svg"
+                                                                                            data-name="Drink">
+                                                                                            <img src="../assets/svg/drink.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="milk.svg"
+                                                                                            data-name="Milk">
+                                                                                            <img src="../assets/svg/milk.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="pet.svg"
+                                                                                            data-name="Pet">
+                                                                                            <img src="../assets/svg/pet.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a class="dropdown-item" href="#" data-icon="others.svg"
+                                                                                            data-name="Others">
+                                                                                            <img src="../assets/svg/others.svg" class="img-fluid" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-animation btn-md fw-bold"
+                                                                data-bs-dismiss="modal">No</button>
+                                                                <button 
+                                                                type="submit" class="btn btn-animation btn-md fw-bold">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Category Update Modal Box End -->
 
                                         @endforeach
                                     </tbody>
@@ -189,6 +336,6 @@
         deleteModalSuccess.show();
         @endif
     });
-    </script>
+</script>
 @endsection
 <!-- Script Section End -->

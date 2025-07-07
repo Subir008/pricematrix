@@ -49,6 +49,7 @@ class AdminController extends Controller
             'category_name' => $request->category_name,
             'category_img' => $imageName,
             'category_icon' => $request->category_icon,
+            'category_icon_name' => $request->category_icon_name,
             'category_date' => $currentDate
         ]
         );
@@ -61,6 +62,7 @@ class AdminController extends Controller
         return back()->with('category_add_success','Category Added Successfully');
     }
 
+    // Deleting the categories
     public function deleteCategory(int $id){
 
         // Check if the id is existed or not
@@ -76,5 +78,53 @@ class AdminController extends Controller
         }
         
 
+    }
+
+    // Update the categories
+    public function updateCategory(Request $request){
+        $validate = Validator::make(
+            $request->all(),
+            [
+                'category_name' => 'min:4 | required'
+            ]
+        ) ;
+
+        if ($validate->fails()) {
+            return back()->withErrors($validate->errors());
+        }
+
+        $category = Product_category_master::where('category_id' , $request->category_id)->first();
+        $imagename = $category['category_img'];
+
+        if($category['category_img'] != "" || $category['category_img'] != null ){
+            $oldimage = $category['category_img'] ;
+
+            if($request->hasFile('category_image')){
+                // Getting the new file
+                $newimage = $request->file('category_image');
+                // Unlink the old file
+                unlink('assets/category_img/' . $oldimage);
+                // Storing the original file extension
+                $ext = $newimage->getClientOriginalExtension();
+                // Original file name 
+                $originalNameArray = explode('.' , $newimage->getClientOriginalName()) ;
+                // Creating new name for the file
+                $imagename =$originalNameArray[0]. time() . '.' . $ext;
+                // Folder path
+                $filePath = public_path('assets/category_img/');
+                //Upload the file
+                $newimage->move( $filePath , $imagename );
+            }else{
+                $imagename = $oldimage;
+            }
+        }
+        Product_category_master::where('category_id' , $request->category_id)->update([
+            'category_name' => $request->category_name,
+            'category_img' => $imagename,
+            'category_icon' => $request->category_icon,
+            'category_icon_name' => $request->category_icon_name
+        ]);
+
+        return back()->with('success' , 'Category Updated Successfully.');
     }
 }

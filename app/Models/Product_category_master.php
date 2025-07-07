@@ -11,6 +11,7 @@ class Product_category_master extends Model
         'category_name',
         'category_img',
         'category_icon',
+        'category_icon_name',
         'category_date'
     ];
     

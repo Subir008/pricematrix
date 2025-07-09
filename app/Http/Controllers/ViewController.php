@@ -36,4 +36,8 @@ class ViewController extends Controller
     public function addNewCategory(){
         return view('back-end.add-new-categories');
     }
+
+    public function addNewSubCategory(){
+        return view('back-end.add-new-subcategories');
+    }
 }

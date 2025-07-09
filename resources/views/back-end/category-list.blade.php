@@ -40,10 +40,10 @@
                                 <table class="table all-package theme-table" id="table_id">
                                     <thead>
                                         <tr>
-                                            <th>Product Name</th>
+                                            <th>Category Name</th>
                                             <th>Date</th>
-                                            <th>Product Image</th>
-                                            <th>Icon</th>
+                                            <th>Category Image</th>
+                                            <th>Category Icon</th>
                                             <!-- <th>Slug</th> -->
                                             <th>Option</th>
                                         </tr>
@@ -166,10 +166,13 @@
                                                                         </div>
 
                                                                         <div class="mb-4 row align-items-center">
-                                                                            <label class="col-sm-12 col-form-label form-label-title mb-0">Category
-                                                                                Image</label>
+                                                                            <label class="col-sm-12 col-form-label form-label-title mb-0"><u>
+                                                                                Category Image
+                                                                            </u></label>
+                                                                                <label for="" class="col-sm-12 col-form-label form-label-title">Old Image</label>
                                                                                 <img src="/assets/category_img/{{ $category_data->category_img }}" class="img-fluid mb-3" alt="">
-                                                                            <div class="form-group col-sm-12">
+                                                                                <label for="" class="col-sm-12 col-form-label form-label-title">Select New Image</label>
+                                                                                <div class="form-group col-sm-12">
                                                                                 @php
                                                                                 $file_allowed =  '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
                                                                                 @endphp
@@ -331,6 +334,40 @@
 @section('script')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+           //    const dropdownItems = document.querySelectorAll('.dropdown-item');
+        //     const dropdownButton = document.getElementById('dropdownMenuButton1');
+        //     const dropdownMenu = document.querySelector('.dropdown-menu');
+        //     const iconInput = document.getElementById('categoryIconInput');
+        //     const iconName = document.getElementById('categoryIconName');
+
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            const dropdownButtons = document.querySelector('#dropdownMenuButton1');
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            const iconInputs = document.querySelectorAll('#categoryIconInput');
+            const iconNames = document.querySelectorAll('#categoryIconName');
+
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const icon = this.getAttribute('data-icon');
+                    const Name = this.getAttribute('data-name');
+                    iconInputs.value = icon;
+                    iconNames.value = Name ;
+
+                    // Update button text to show selection
+                    dropdownButtons.textContent = Name;
+
+                    // Close the dropdown
+                    const dropdownInstance = bootstrap.Dropdown.getOrCreateInstance(dropdownButtons);
+                    dropdownInstance.hide();
+                });
+            });
+            
+             
+
         @if (session()->has('delete_success'))
         let deleteModalSuccess = new bootstrap.Modal(document.getElementById('deleteModalSuccess'));
         deleteModalSuccess.show();

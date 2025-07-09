@@ -8,7 +8,7 @@ use Carbon\Traits\Timestamp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class AdminController extends Controller
+class CategoryController extends Controller
 {
     // Adding new category 
     public function addNewCategory(Request $request){

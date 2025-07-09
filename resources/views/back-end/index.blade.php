@@ -12,10 +12,10 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
-   
+
     <title>
-    @section('title')
-    @show
+        @section('title')
+        @show
     </title>
 
     <!-- Google font-->
@@ -196,8 +196,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="#">
+                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#">
                                         <i data-feather="log-out"></i>
                                         <span>Log out</span>
                                     </a>
@@ -285,6 +284,22 @@
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Sub Category</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="{{ route('category-list') }}">Category List</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ route('add-new-subcategories') }}">Add New Subcategory</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-settings-line"></i>
                                         <span>Attributes</span>
                                     </a>
@@ -346,12 +361,12 @@
 
             <!-- index body start -->
             <div class="page-body">
-               
+
                 <!-- Container-fluid Ends-->
-                
+
                 @section('main')
                 @show
-                
+
                 <!-- footer start-->
                 <div class="container-fluid">
                     <footer class="footer">
@@ -393,11 +408,11 @@
 
     <!-- latest js -->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
-    
+
     @section('script')
     @show
-    
-     <script>
+
+    <script>
         // Toaster 
         // Wait for the page to finish loading
         $(document).ready(function () {
@@ -407,7 +422,7 @@
             myToast.show();
         });
     </script>
-    
+
 
     <!-- Bootstrap js -->
     <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -448,7 +463,7 @@
 
     <!-- ratio js -->
     <script src="../assets/js/ratio.js"></script>
-    
+
     <!-- Data table js -->
     <script src="../assets/js/jquery.dataTables.js"></script>
     <script src="../assets/js/custom-data-table.js"></script>
@@ -456,14 +471,14 @@
     <!-- ck editor js -->
     <script src="../assets/js/ckeditor-custom.js"></script>
     <script src="../assets/js/ckeditor.js"></script>
-    
+
     <!-- select2 js -->
     <script src="../assets/js/select2.min.js"></script>
     <script src="../assets/js/select2-custom.js"></script>
-  
+
     <!-- sidebar effect -->
     <script src="../assets/js/sidebareffect.js"></script>
-    
+
     <!-- Theme js -->
     <script src="../assets/js/script.js"></script>
 </body>

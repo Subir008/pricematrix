@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +25,10 @@ Route::middleware('guestcheck')->group(function() {
             Route::get('add-new-products', 'addNewProducts')->name('add-products');
             Route::get('category-list' , 'categoryList')->name('category-list');
             Route::get('add-new-category', 'addNewCategory')->name('add-new-categories');
+            Route::get('add-new-subcategory', 'addNewSubCategory')->name('add-new-subcategories');
         });
 
-        Route::controller(AdminController::class)->group(function(){
+        Route::controller(CategoryController::class)->group(function(){
             Route::post('/add-category' , 'addNewCategory')->name('addNewCategory');
             Route::get('/delete-category/{id}','deleteCategory')->name('deleteCategory');
             Route::post('/update-category' , 'updateCategory')->name('updateCategory');

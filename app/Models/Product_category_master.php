@@ -8,7 +8,9 @@ class Product_category_master extends Model
 {
     //
     protected $fillable = [
+        'category_id',
         'category_name',
+        'category_hidden_name',
         'category_img',
         'category_icon',
         'category_icon_name',

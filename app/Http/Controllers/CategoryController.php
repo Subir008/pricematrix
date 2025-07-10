@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Product_category_master;
 use Carbon\Carbon;
 use Carbon\Traits\Timestamp;
+use Hamcrest\Text\StringContains;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 class CategoryController extends Controller
 {
@@ -26,6 +28,13 @@ class CategoryController extends Controller
         if($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
+
+        // Storing the name
+        $name = $request->category_name;
+        // convert it to lower case
+        $name = strtolower($name);
+        // update the name
+        $category_hidden_name = str_replace(' ', '_', $name);
 
         // Getting the file
         $image = $request->file('category_image') ;
@@ -47,6 +56,7 @@ class CategoryController extends Controller
         $data = Product_category_master::create(
             [
             'category_name' => $request->category_name,
+            'category_hidden_name' => $category_hidden_name,
             'category_img' => $imageName,
             'category_icon' => $request->category_icon,
             'category_icon_name' => $request->category_icon_name,

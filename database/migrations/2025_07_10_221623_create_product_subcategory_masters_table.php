@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_category_masters', function (Blueprint $table) {
-            $table->id('category_id');
+        Schema::create('product_subcategory_masters', function (Blueprint $table) {
+            $table->id('subcategory_id');
+            $table->string('subcategory_name');
+            $table->string('subcategory_hidden_name');
+            $table->string('subcategory_img');
+            $table->date('subcategory_date');
+            $table->string('category_id');
             $table->string('category_name');
-            $table->string('category_hidden_name');
-            $table->string('category_img');
-            $table->string('category_icon');
-            $table->string('category_icon_name');
-            $table->date('category_date');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_category_masters');
+        Schema::dropIfExists('product_subcategory_masters');
     }
 };

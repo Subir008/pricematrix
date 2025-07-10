@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,16 @@ Route::middleware('guestcheck')->group(function() {
             Route::get('add-new-subcategory', 'addNewSubCategory')->name('add-new-subcategories');
         });
 
+        // Category section
         Route::controller(CategoryController::class)->group(function(){
             Route::post('/add-category' , 'addNewCategory')->name('addNewCategory');
             Route::get('/delete-category/{id}','deleteCategory')->name('deleteCategory');
             Route::post('/update-category' , 'updateCategory')->name('updateCategory');
+        });
+
+        // SubCategory section
+        Route::controller(SubCategoryController::class)->group(function(){
+            Route::post('/add-new-subcategory', 'addNewSubCategory')->name('addNewSubCategory');
         });
         
         Route::get('logged_out' , [AdminLoginController::class , 'logged_out'] )->name('logout');

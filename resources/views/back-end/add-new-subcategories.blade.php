@@ -52,13 +52,21 @@
 
                                         <div class="mb-4 row align-items-center">
                                             <label class="col-sm-3 col-form-label form-label-title">Category Name
-                                                </label>
+                                            </label>
                                             <div class="col-sm-9">
-                                                <select class="js-example-basic-single w-100" name="state">
+                                                <select class="js-example-basic-single w-100" name="category_name">
                                                     <option disabled selected>Choose Category</option>
-                                                    <option>Simple</option>
-                                                    <option>Classified</option>
+                                                    @foreach ($data as $product)
+                                                        <option value="{{ $product['category_hidden_name'] }}">
+                                                            {{ $product['category_name']}}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
+                                                @error('category_name')
+                                                    <label for="" class="text-danger">
+                                                        {{ $message }}
+                                                    </label>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -81,7 +89,7 @@
     <!-- New Product Category Add End -->
 
     <!-- Toaster for Category Added Success start-->
-    @if (session('category_add_success'))
+    @if (session('subcategory_add_success'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
             <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
                 style="background-color: #0da487; color: white;">
@@ -90,7 +98,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
-                    <strong>{{ session('category_add_success') }}</strong>
+                    <strong>{{ session('subcategory_add_success') }}</strong>
                 </div>
             </div>
         </div>
@@ -98,7 +106,7 @@
     <!-- Toaster for Category Added Success end-->
 
     <!-- Toaster for Category Added Failure start-->
-    @if (session('category_add_failed'))
+    @if (session('subcategory_add_failed'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
             <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
                 style="background-color: #da3837; color: white;">
@@ -107,17 +115,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
-                    <strong>{{ session('category_add_failed') }}</strong>
+                    <strong>{{ session('subcategory_add_failed') }}</strong>
                 </div>
             </div>
         </div>
     @endif
     <!-- Toaster for Category Added Failure end -->
-
-@endsection
-
-
-@section('script')
 
 @endsection
 <!-- Page Content End -->

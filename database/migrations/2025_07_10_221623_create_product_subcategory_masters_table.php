@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -17,10 +16,11 @@ return new class extends Migration
             $table->string('subcategory_hidden_name');
             $table->string('subcategory_img');
             $table->date('subcategory_date');
-            $table->string('category_id');
             $table->string('category_name');
             $table->timestamps();
+
         });
+
     }
 
     /**

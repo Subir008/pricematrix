@@ -38,6 +38,7 @@ class ViewController extends Controller
     }
 
     public function addNewSubCategory(){
-        return view('back-end.add-new-subcategories');
+        $productData = Product_category_master::all();
+        return view('back-end.add-new-subcategories', ['data' => $productData ]);
     }
 }

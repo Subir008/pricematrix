@@ -13,7 +13,6 @@ class Product_subcategory_master extends Model
         'subcategory_hidden_name',
         'subcategory_img',
         'subcategory_date',
-        'category_id',
         'category_name'
     ];
 

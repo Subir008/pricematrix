@@ -30,9 +30,9 @@ class CategoryController extends Controller
         }
 
         // Storing the name
-        $name = $request->category_name;
+        $categoryname = $request->category_name;
         // convert it to lower case
-        $name = strtolower($name);
+        $name = strtolower($categoryname);
         // update the name
         $category_hidden_name = str_replace(' ', '_', $name);
 

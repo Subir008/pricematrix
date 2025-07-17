@@ -289,7 +289,7 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="{{ route('category-list') }}">Category List</a>
+                                            <a href="{{ route('subcategoryList') }}">Subcategory List</a>
                                         </li>
 
                                         <li>

@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-header-2">
-                                    <h5>Sub Category Information</h5>
+                                    <h5>Subcategory Information</h5>
                                 </div>
                                 <form action="{{ route('addNewSubCategory') }}" method="post" enctype="multipart/form-data">
                                     @csrf

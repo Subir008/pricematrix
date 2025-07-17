@@ -27,6 +27,7 @@ Route::middleware('guestcheck')->group(function() {
             Route::get('category-list' , 'categoryList')->name('category-list');
             Route::get('add-new-category', 'addNewCategory')->name('add-new-categories');
             Route::get('add-new-subcategory', 'addNewSubCategory')->name('add-new-subcategories');
+            Route::get('subcategory-list', 'subcategoryList')->name('subcategoryList');
         });
 
         // Category section
@@ -39,6 +40,7 @@ Route::middleware('guestcheck')->group(function() {
         // SubCategory section
         Route::controller(SubCategoryController::class)->group(function(){
             Route::post('/add-new-subcategory', 'addNewSubCategory')->name('addNewSubCategory');
+            Route::delete('/delete-subcategory','deleteSubCategory')->name('deleteSubCategory');
         });
         
         Route::get('logged_out' , [AdminLoginController::class , 'logged_out'] )->name('logout');

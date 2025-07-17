@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class SubCategoryController extends Controller
 {
-    // Adding new category 
+    // Adding new subcategory 
     public function addNewSubCategory(Request $request){ 
 
         // Check the input data

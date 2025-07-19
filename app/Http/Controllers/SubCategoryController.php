@@ -68,4 +68,26 @@ class SubCategoryController extends Controller
         return back()->with('subcategory_add_success','Subcategory Added Successfully');
     }
 
+    // Delete Subcategory
+    public function deleteSubCategory(Request $request){
+        // Check data is exist or not
+        $categoryDataExists = Product_subcategory_master::where( 'subcategory_id',$request->subcategory_id)->exists();
+        if($categoryDataExists){
+            // Fetch the data
+            $categoryData = Product_subcategory_master::where( 'subcategory_id',$request->subcategory_id)->get();
+            // Fetch the image name
+            $img = $categoryData[0]->subcategory_img;
+            // Check the image data is present or not
+            if($img != "" || $img != null){
+                // Unlink the image from the folder 
+                unlink('assets/subcategory_img/'.$img);
+            }
+            // Delete the data from db
+            Product_subcategory_master::where('subcategory_id',$request->subcategory_id)->delete();
+            return back()->with('success','Subcategory deleted successfully ....');
+        }else{
+            return back()->with('failed',"Data can't be deleted !!!!" );
+        }
+    }
+
 }

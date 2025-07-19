@@ -109,7 +109,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="remove-box">
-                                                                    <input type="hidden" name="category_id"
+                                                                    <input type="hidden" name="subcategory_id"
                                                                         value="{{ $subcategory_data->subcategory_id }}">
                                                                     <p>The permission for the use/group, preview is inherited
                                                                         from
@@ -174,8 +174,8 @@
     </div>
     <!-- Data deletion success modal end -->
 
-    <!-- Toaster for wrong credentials start-->
-    @if (session('success'))
+    <!-- Toaster for success start-->
+    @if (Session::has('success'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
             <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
                 style="background-color: #0da487; color: white;">
@@ -189,7 +189,24 @@
             </div>
         </div>
     @endif
-    <!-- Toaster for wrong credentials end-->
+    <!-- Toaster for success end-->
+
+    <!-- Toaster for failure start-->
+    @if (Session::has('failed'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color: #da3837; color: white;">
+                <div class="toast-header">
+                    <small class="text-muted me-auto">Just Now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>{{ session('failed') }}</strong>
+                </div>
+            </div>
+        </div>
+    @endif
+    <!-- Toaster for failure end-->
 
 @endsection
 <!-- Page Content End -->

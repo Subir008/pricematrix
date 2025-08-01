@@ -17,8 +17,14 @@ return new class extends Migration {
             $table->string('subcategory_img');
             $table->date('subcategory_date');
             $table->string('category_name');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')
+                ->references('category_id')
+                ->on('product_category_masters')
+                ->cascadeOnDelete();
             $table->timestamps();
 
+            
         });
 
     }

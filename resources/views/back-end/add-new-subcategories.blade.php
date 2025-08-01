@@ -52,12 +52,12 @@
 
                                         <div class="mb-4 row align-items-center">
                                             <label class="col-sm-3 col-form-label form-label-title">Category Name
-                                            </label>
-                                            <div class="col-sm-9">
-                                                <select class="js-example-basic-single w-100" name="category_name">
-                                                    <option disabled selected>Choose Category</option>
-                                                    @foreach ($data as $product)
-                                                        <option value="{{ $product['category_hidden_name'] }}">
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <select class="js-example-basic-single w-100" name="category_name">
+                                                        <option disabled selected>Choose Category</option>
+                                                        @foreach ($data as $product)
+                                                        <option value="{{ $product['category_id'] }}_{{ $product['category_hidden_name'] }}" >
                                                             {{ $product['category_name']}}
                                                         </option>
                                                     @endforeach

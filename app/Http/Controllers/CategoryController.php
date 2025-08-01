@@ -79,6 +79,12 @@ class CategoryController extends Controller
         $category_id_exist = Product_category_master::where('category_id' , $id)->exists();
         if( $category_id_exist){
             // Delete the category list data if it exists 
+            $category_data = Product_category_master::where('category_id', $id)->get();
+            $category_img = $category_data[0]->category_img;
+            if($category_img != "" || $category_img != null){
+                // Unlink the image file 
+                unlink('assets/category_img/'. $category_img);
+            }
             Product_category_master::destroy($id);
 
             return back()->with('delete_success','Category Deleted Successfully ....');

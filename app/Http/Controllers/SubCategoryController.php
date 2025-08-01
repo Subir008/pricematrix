@@ -26,6 +26,23 @@ class SubCategoryController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        // Break the category name into array value as it contain both category name & id in it.
+        $categoryInfo = explode('_', $request->category_name);
+        // Check if the array value is greater than 2
+        if (count($categoryInfo) > 2) {
+            // Store the category id
+            $category_id = $categoryInfo[0];
+            // Store the category id with underscore
+            $category_id_with_us = $category_id . "_";
+            // Trim the name and store it
+            $category_name = ltrim($request->category_name , $category_id_with_us);
+        }else{
+            // Store the category id
+            $category_id = $categoryInfo[0];
+            // Store the category name
+            $category_name = $categoryInfo[1];
+        }
+        
         // Store the name
         $subcategory_name = $request->subcategory_name;
         // Convert it into lower case
@@ -55,7 +72,8 @@ class SubCategoryController extends Controller
             'subcategory_name' => $request->subcategory_name,
             'subcategory_hidden_name' => $subcategory_hidden_name,
             'subcategory_img' => $imageName,
-            'category_name' => $request->category_name,
+            'category_name' => $category_name,
+            'category_id' => $category_id,
             'subcategory_date' => $currentDate
         ]
         );

@@ -30,6 +30,7 @@
                                             <th>Date</th>
                                             <th>Category Name</th>
                                             <th>Category Icon</th>
+                                            <th>Category Image</th>
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -54,12 +55,19 @@
 
 
                                                 <td>
-                                                    {{ $subcategory_data->category_name }}
+                                                    {{ $subcategory_data->categoryData->category_name }}
                                                 </td>
 
                                                 <td>
                                                     <div class="category-icon">
-                                                        <img src="/assets/svg/{{ $subcategory_data->category_icon }}"
+                                                        <img src="/assets/svg/{{ $subcategory_data->categoryData->category_icon }}"
+                                                            class="img-fluid" alt="">
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="table-image">
+                                                        <img src="/assets/category_img/{{ $subcategory_data->categoryData->category_img }}"
                                                             class="img-fluid" alt="">
                                                     </div>
                                                 </td>

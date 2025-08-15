@@ -74,19 +74,19 @@
                                                     </div>
                                                 </td>
 
-                                                <!-- <td>buscuit</td> -->
-
                                                 <td>
                                                     <ul>
                                                         <li>
-                                                            <a href="order-detail.html">
+                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                data-bs-target="#viewModal{{ $category_data->category_id }}">
                                                                 <i class="ri-eye-line"></i>
                                                             </a>
                                                         </li>
 
                                                         <li>
-                                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#updateModal{{ $category_data->category_id }}">
-                                                                <i class="ri-pencil-line" ></i>
+                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                data-bs-target="#updateModal{{ $category_data->category_id }}">
+                                                                <i class="ri-pencil-line"></i>
                                                             </a>
                                                         </li>
 
@@ -99,7 +99,61 @@
                                                     </ul>
                                                 </td>
                                             </tr>
-                                            
+
+
+                                            <!-- Category View Modal Box Start -->
+                                            <div class="modal fade theme-modal remove-coupon"
+                                                id="viewModal{{ $category_data->category_id }}" aria-hidden="true"
+                                                tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header d-block text-center">
+                                                            <h5 class="modal-title w-100" id="exampleModalLabel22">Category Data
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="remove-box">
+
+                                                                <div class="theme-form theme-form-2 mega-form">
+                                                                    <div class="mb-3 row align-items-center">
+                                                                        <label class="form-label-title col-sm-12 mb-2">Category
+                                                                            Name</label>
+                                                                        <div class="col-sm-12">
+                                                                            <input class="form-control" type="text"
+                                                                                name="category_name" placeholder="Category Name"
+                                                                                value="{{ $category_data->category_name }}" readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="mb-4 row align-items-center">
+                                                                        <label
+                                                                            class="col-sm-12 col-form-label form-label-title mb-0">
+                                                                                Category Image
+                                                                            </label>
+                                                                        <img src="/assets/category_img/{{ $category_data->category_img }}"
+                                                                            class="img-fluid mb-3" alt="">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mb-4 row align-items-center">
+                                                                    <div class="col-sm-12 form-label-title">
+                                                                        Category Icon
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <input  class="form-control" type="text" name="category_icon_name" id="" value="{{ $category_data->category_icon_name }}" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Category View Modal Box End -->
+
                                             <!-- Category Delete confirmation Modal Box Start -->
                                             <div class="modal fade theme-modal remove-coupon"
                                                 id="deleteModal{{ $category_data->category_id }}" aria-hidden="true"
@@ -146,17 +200,23 @@
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </div>
-                                                        <form action="{{ route('updateCategory') }}" method="post" enctype="multipart/form-data">
+                                                        <form action="{{ route('updateCategory') }}" method="post"
+                                                            enctype="multipart/form-data">
                                                             @csrf
-                                                             <div class="modal-body">
+                                                            <div class="modal-body">
                                                                 <div class="remove-box">
-                                                                    <input type="hidden" name="category_id" value="{{ $category_data->category_id }}">
+                                                                    <input type="hidden" name="category_id"
+                                                                        value="{{ $category_data->category_id }}">
                                                                     <div class="theme-form theme-form-2 mega-form">
                                                                         <div class="mb-3 row align-items-center">
-                                                                            <label class="form-label-title col-sm-12 mb-2">Category Name</label>
+                                                                            <label
+                                                                                class="form-label-title col-sm-12 mb-2">Category
+                                                                                Name</label>
                                                                             <div class="col-sm-12">
-                                                                                <input class="form-control" type="text" name="category_name"
-                                                                                    placeholder="Category Name" value="{{ $category_data->category_name }}" >
+                                                                                <input class="form-control" type="text"
+                                                                                    name="category_name"
+                                                                                    placeholder="Category Name"
+                                                                                    value="{{ $category_data->category_name }}">
                                                                                 @error('category_name')
                                                                                     <label class="text-danger ">
                                                                                         {{ $message }}
@@ -166,101 +226,135 @@
                                                                         </div>
 
                                                                         <div class="mb-4 row align-items-center">
-                                                                            <label class="col-sm-12 col-form-label form-label-title mb-0"><u>
-                                                                                Category Image
-                                                                            </u></label>
-                                                                                <label for="" class="col-sm-12 col-form-label form-label-title">Old Image</label>
-                                                                                <img src="/assets/category_img/{{ $category_data->category_img }}" class="img-fluid mb-3" alt="">
-                                                                                <label for="" class="col-sm-12 col-form-label form-label-title">Select New Image</label>
-                                                                                <div class="form-group col-sm-12">
+                                                                            <label
+                                                                                class="col-sm-12 col-form-label form-label-title mb-0"><u>
+                                                                                    Category Image
+                                                                                </u></label>
+                                                                            <label for=""
+                                                                                class="col-sm-12 col-form-label form-label-title">Old
+                                                                                Image</label>
+                                                                            <img src="/assets/category_img/{{ $category_data->category_img }}"
+                                                                                class="img-fluid mb-3" alt="">
+                                                                            <label for=""
+                                                                                class="col-sm-12 col-form-label form-label-title">Select
+                                                                                New Image</label>
+                                                                            <div class="form-group col-sm-12">
                                                                                 @php
-                                                                                $file_allowed =  '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
+                                                                                    $file_allowed = '.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,.gif,.webp,.tiff,.tif';
                                                                                 @endphp
-                                                                                <input type="file" class="form-control form-choose" name="category_image"
-                                                                                    value="{{ old('category_image') ?? '' }}" accept="{{ $file_allowed }}">
+                                                                                <input type="file"
+                                                                                    class="form-control form-choose"
+                                                                                    name="category_image"
+                                                                                    value="{{ old('category_image') ?? '' }}"
+                                                                                    accept="{{ $file_allowed }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="mb-4 row align-items-center">
-                                                                        <div class="col-sm-12 form-label-title">Select Category Icon</div>
-                                                                        <input type="hidden" name="category_icon" id="categoryIconInput"
+                                                                        <div class="col-sm-12 form-label-title">Select Category
+                                                                            Icon</div>
+                                                                        <input type="hidden" name="category_icon"
+                                                                            id="categoryIconInput"
                                                                             value="{{ $category_data->category_icon }}">
-                                                                        <input type="hidden" name="category_icon_name" id="categoryIconName"
+                                                                        <input type="hidden" name="category_icon_name"
+                                                                            id="categoryIconName"
                                                                             value="{{ $category_data->category_icon_name }}">
-                                                                        
+
                                                                         <div class="col-sm-12">
                                                                             <div class="dropdown icon-dropdown">
-                                                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                                                <button class="btn dropdown-toggle"
+                                                                                    type="button" id="dropdownMenuButton1"
                                                                                     data-bs-toggle="dropdown" name="icon">
                                                                                     {{ $category_data->category_icon_name }}
                                                                                 </button>
-                                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                                <ul class="dropdown-menu"
+                                                                                    aria-labelledby="dropdownMenuButton1">
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="vegetable.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="vegetable.svg"
                                                                                             data-name="Vegetables">
-                                                                                            <img src="../assets/svg/vegetable.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/vegetable.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="cup.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="cup.svg"
                                                                                             data-name="Refreshment">
-                                                                                            <img src="../assets/svg/cup.svg" class="blur-up lazyload"
-                                                                                                alt="">
+                                                                                            <img src="../assets/svg/cup.svg"
+                                                                                                class="blur-up lazyload" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="meats.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="meats.svg"
                                                                                             data-name="Meats">
-                                                                                            <img src="../assets/svg/meats.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/meats.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="breakfast.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="breakfast.svg"
                                                                                             data-name="Breakfast">
-                                                                                            <img src="../assets/svg/breakfast.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/breakfast.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="frozen.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="frozen.svg"
                                                                                             data-name="Frozen">
-                                                                                            <img src="../assets/svg/frozen.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/frozen.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="biscuit.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="biscuit.svg"
                                                                                             data-name="Biscuit">
-                                                                                            <img src="../assets/svg/biscuit.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/biscuit.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="grocery.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="grocery.svg"
                                                                                             data-name="Grocery">
-                                                                                            <img src="../assets/svg/grocery.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/grocery.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="drink.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="drink.svg"
                                                                                             data-name="Drink">
-                                                                                            <img src="../assets/svg/drink.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/drink.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="milk.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="milk.svg"
                                                                                             data-name="Milk">
-                                                                                            <img src="../assets/svg/milk.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/milk.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="pet.svg"
-                                                                                            data-name="Pet">
-                                                                                            <img src="../assets/svg/pet.svg" class="img-fluid" alt="">
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="pet.svg" data-name="Pet">
+                                                                                            <img src="../assets/svg/pet.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <a class="dropdown-item" href="#" data-icon="others.svg"
+                                                                                        <a class="dropdown-item" href="#"
+                                                                                            data-icon="others.svg"
                                                                                             data-name="Others">
-                                                                                            <img src="../assets/svg/others.svg" class="img-fluid" alt="">
+                                                                                            <img src="../assets/svg/others.svg"
+                                                                                                class="img-fluid" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                 </ul>
@@ -268,14 +362,14 @@
                                                                         </div>
                                                                     </div>
 
-                                                                   
+
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-animation btn-md fw-bold"
-                                                                data-bs-dismiss="modal">No</button>
-                                                                <button 
-                                                                type="submit" class="btn btn-animation btn-md fw-bold">Update</button>
+                                                                    data-bs-dismiss="modal">No</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-animation btn-md fw-bold">Update</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -296,7 +390,7 @@
         </div>
     </div>
     <!-- All User Table Ends-->
-    
+
     <!-- Data deletion success modal start -->
     <div class="modal fade theme-modal remove-coupon" id="deleteModalSuccess" aria-hidden="true" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -332,14 +426,14 @@
 
 <!-- Script Section Start -->
 @section('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-           //    const dropdownItems = document.querySelectorAll('.dropdown-item');
-        //     const dropdownButton = document.getElementById('dropdownMenuButton1');
-        //     const dropdownMenu = document.querySelector('.dropdown-menu');
-        //     const iconInput = document.getElementById('categoryIconInput');
-        //     const iconName = document.getElementById('categoryIconName');
+            //    const dropdownItems = document.querySelectorAll('.dropdown-item');
+            //     const dropdownButton = document.getElementById('dropdownMenuButton1');
+            //     const dropdownMenu = document.querySelector('.dropdown-menu');
+            //     const iconInput = document.getElementById('categoryIconInput');
+            //     const iconName = document.getElementById('categoryIconName');
 
             const dropdownItems = document.querySelectorAll('.dropdown-item');
             const dropdownButtons = document.querySelector('#dropdownMenuButton1');
@@ -355,7 +449,7 @@
                     const icon = this.getAttribute('data-icon');
                     const Name = this.getAttribute('data-name');
                     iconInputs.value = icon;
-                    iconNames.value = Name ;
+                    iconNames.value = Name;
 
                     // Update button text to show selection
                     dropdownButtons.textContent = Name;
@@ -365,14 +459,14 @@
                     dropdownInstance.hide();
                 });
             });
-            
-             
 
-        @if (session()->has('delete_success'))
-        let deleteModalSuccess = new bootstrap.Modal(document.getElementById('deleteModalSuccess'));
-        deleteModalSuccess.show();
-        @endif
-    });
-</script>
+
+
+            @if (session()->has('delete_success'))
+                let deleteModalSuccess = new bootstrap.Modal(document.getElementById('deleteModalSuccess'));
+                deleteModalSuccess.show();
+            @endif
+        });
+    </script>
 @endsection
 <!-- Script Section End -->
